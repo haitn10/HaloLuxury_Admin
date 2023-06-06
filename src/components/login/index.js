@@ -43,7 +43,7 @@ function Login() {
               <input
                 type="text"
                 id="username"
-                className="h-11 w-300 rounded-full border-0 bg-transparent px-5 py-[0.32rem] leading-[1.6] outline-none focus:border-second focus:border"
+                className="h-11 w-300 rounded-full border-0 bg-white px-5 py-[0.32rem] leading-[1.6] outline-none focus:border-second focus:border"
                 placeholder="Enter username"
                 required
                 onChange={(e) => setUserName(e.target.value)}
@@ -59,7 +59,7 @@ function Login() {
               <input
                 type="password"
                 id="password"
-                className="h-11 w-300 rounded-full border-0 bg-transparent px-5 py-[0.32rem] leading-[1.6] outline-none focus:border-second focus:border"
+                className="h-11 w-300 rounded-full border-0 bg-white px-5 py-[0.32rem] leading-[1.6] outline-none focus:border-second focus:border"
                 placeholder="Enter password"
                 required
                 onChange={(e) => setPassword(e.target.value)}
