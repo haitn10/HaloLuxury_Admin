@@ -9,7 +9,6 @@ export const setState = (state) => ({
 });
 
 export const add_product = (credentials) => {
-  console.log(credentials);
   return async (dispatch, getState) => {
     const state = getState();
     if (state.info_admin.isAdding) {
@@ -27,6 +26,31 @@ export const add_product = (credentials) => {
       return Promise.resolve();
     } catch (e) {
       dispatch(setState({ isAdding: false }));
+      const message = e.response.data ? e.response.data.title : e.message;
+      return Promise.reject(message);
+    }
+  };
+};
+
+export const update_product = (credentials) => {
+  console.log(credentials);
+  return async (dispatch, getState) => {
+    const state = getState();
+    if (state.info_admin.isUpdating) {
+      return Promise.reject(new Error("Update products in progress...!").message);
+    }
+
+    try {
+      dispatch(setState({ isUpdating: true }));
+      const { data } = await axios.put(
+        `${baseURL}/products/update/${credentials.id}`,
+        credentials.data
+      );
+      console.log(data);
+      dispatch(setState({ isUpdating: false }));
+      return Promise.resolve();
+    } catch (e) {
+      dispatch(setState({ isUpdating: false }));
       const message = e.response.data ? e.response.data.title : e.message;
       return Promise.reject(message);
     }
