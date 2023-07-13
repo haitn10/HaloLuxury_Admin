@@ -79,3 +79,24 @@ export const deleteProduct = async (req, res) => {
     });
 };
 
+export const updateProfile = async (req, res) => {
+  return await axios
+    .put(`${baseURL}/users/${req.id}`, req.profile)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};
+
+export const changePasswordAPI = async (req, res) => {
+  return await axios
+    .put(`${baseURL}/users/changepassword/${req.id}`, req.changePassword)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};

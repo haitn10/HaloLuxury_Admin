@@ -68,19 +68,18 @@ const Products = () => {
 
   return (
     <div className="m-10 w-full">
-      {
-        <Alert
-          open={alert.status}
-          onClose={() => setAlert({ status: false, message: "", color: "" })}
-          animate={{
-            mount: { x: 0 },
-            unmount: { x: 100 },
-          }}
-          className={`absolute mt-5 z-50 right-1 w-400 text-light bg-${alert.color}`}
-        >
-          {alert.message}
-        </Alert>
-      }
+      <Alert
+        open={alert.status}
+        onClose={() => setAlert({ status: false, message: "", color: "" })}
+        animate={{
+          mount: { x: 0 },
+          unmount: { x: 100 },
+        }}
+        className={`absolute mt-5 z-50 right-1 w-400 text-light bg-${alert.color}`}
+      >
+        {alert.message}
+      </Alert>
+
       <ProductItem
         data={data ? data : null}
         setData={setData}
