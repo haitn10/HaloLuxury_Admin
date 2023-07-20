@@ -54,7 +54,6 @@ const Products = () => {
 
   const onDelete = async (id) => {
     const data = await deleteProduct(id);
-    console.log(data);
     if (data.statusCode === 200) {
       window.location.reload();
     } else {

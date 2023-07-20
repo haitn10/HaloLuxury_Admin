@@ -100,3 +100,25 @@ export const changePasswordAPI = async (req, res) => {
       return err.response;
     });
 };
+
+export const getAllUsers = async (req, res) => {
+  return await axios
+    .get(`${baseURL}/users/customers`)
+    .then((response) => {
+      return response.data.data;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};
+
+export const getAllStores = async (req, res) => {
+  return await axios
+    .get(`${baseURL}/users/stores`)
+    .then((response) => {
+      return response.data.data;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};

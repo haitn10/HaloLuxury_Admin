@@ -1,12 +1,16 @@
-import { Button, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { getProduct, getTotals } from "../../api";
+import TransactionDetails from "./TransactionDetails";
 
 const Dashboard = () => {
   const [total, setTotal] = useState();
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
   const [listProduct, setListProduct] = useState();
+  const [searchText, setsearchText] = useState("");
   const state = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -17,26 +21,19 @@ const Dashboard = () => {
     getData();
   }, [state.profile.id]);
 
-  const onLogout = (e) => {
-    e.preventDefault();
-    sessionStorage.clear();
-    window.location.reload();
-  };
-
   return (
     <div className="m-10 w-full">
+      <TransactionDetails
+        data={data}
+        setData={setData}
+        open={open}
+        setOpen={setOpen}
+      />
+
       {listProduct && total ? (
         <>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center">
             <Typography className="text-2xl font-bold">Dashboard</Typography>
-            <div className="flex gap-5">
-              <Button
-                className="text-light bg-red px-4 py-3 rounded-xl"
-                onClick={(e) => onLogout(e)}
-              >
-                Logout
-              </Button>
-            </div>
           </div>
           <div className="flex justify-around mt-10">
             <div className="grid grid-cols-4 w-full gap-5">
@@ -84,7 +81,8 @@ const Dashboard = () => {
                   id="default-search"
                   className="h-10 p-5 outline-none border border-first rounded-xl"
                   placeholder="Tên khách hàng...."
-                  // onChange={handleSearch}
+                  value={searchText}
+                  onChange={(e) => setsearchText(e.target.value)}
                 />
               </div>
             </div>
@@ -115,7 +113,13 @@ const Dashboard = () => {
                   </thead>
                   <tbody className="text-sm font-medium divide-y divide-second">
                     {listProduct.reverse().map((product) => (
-                      <tr key={product.id}>
+                      <tr
+                        key={product.id}
+                        onClick={() => {
+                          setOpen(!open);
+                          setData(product);
+                        }}
+                      >
                         <td className="p-2">
                           <div className="flex items-center capitalize">
                             {product.customer.firstName +
