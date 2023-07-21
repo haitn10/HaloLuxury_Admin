@@ -30,8 +30,6 @@ const Pagination = (props) => {
     onPageChange(currentPage - 1);
   };
 
-  console.log(currentPage);
-
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
     <nav className=" flex justify-center pt-6">
@@ -75,17 +73,13 @@ const Pagination = (props) => {
 
           // Render our Page Pills
           return (
-            <button
-              className={classnames(
-                "mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-blue-gray-100 cursor-pointer selection:bg-blue-gray-300",
-                {
-                  selected: pageNumber === currentPage,
-                }
-              )}
+            <li
+              className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-blue-gray-100 cursor-pointer selection:bg-blue-gray-300"
+              // onSelect={pageNumber === currentPage}
               onClick={() => onPageChange(pageNumber)}
             >
               {pageNumber}
-            </button>
+            </li>
           );
         })}
         <li>
