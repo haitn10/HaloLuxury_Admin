@@ -146,11 +146,10 @@ export const deleteCustomers = async (req, res) => {
 };
 
 export const addNewStore = async (req, res) => {
-  console.log(req);
   return await axios
     .post(`${baseURL}/users/registerv2`, req.values)
     .then((response) => {
-      return response.data.data;
+      return response.data;
     })
     .catch((err) => {
       return err.response;

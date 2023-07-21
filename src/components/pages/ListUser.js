@@ -59,7 +59,7 @@ const ListUser = ({ data, title }) => {
       }
       getUserList();
     }
-  }, [data]);
+  }, [data, openRegister, open]);
 
   const currentTableUserData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;

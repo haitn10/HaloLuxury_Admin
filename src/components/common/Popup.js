@@ -17,7 +17,6 @@ const Popup = ({ open, setOpen, storeId, text }) => {
     }
     if (data.statusCode === 200) {
       setOpen(!open);
-      window.location.reload();
     } else {
     }
   };

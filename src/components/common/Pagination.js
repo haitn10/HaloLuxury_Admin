@@ -57,11 +57,12 @@ const Pagination = (props) => {
             </svg>
           </button>
         </li>
-        {paginationRange.map((pageNumber) => {
+        {paginationRange.map((pageNumber, index) => {
           // If the pageItem is a DOT, render the DOTS unicode character
           if (pageNumber === DOTS) {
             return (
               <li
+                key={index}
                 className={classnames(
                   "mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-gray-50-300"
                 )}
@@ -74,6 +75,7 @@ const Pagination = (props) => {
           // Render our Page Pills
           return (
             <li
+              key={index}
               className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-blue-gray-100 cursor-pointer selection:bg-blue-gray-300"
               // onSelect={pageNumber === currentPage}
               onClick={() => onPageChange(pageNumber)}

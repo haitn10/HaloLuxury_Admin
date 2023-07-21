@@ -71,7 +71,13 @@ const CreateStore = ({ open, setOpen }) => {
 
   const onCreate = async (e) => {
     const data = await addNewStore({ values });
-    console.log(data);
+    if (data.statusCode === 200) {
+      setOpen(!open);
+      setDataStores(storeCreate);
+      setDataUsers(dataUser);
+    } else {
+      
+    }
   };
 
   return (
