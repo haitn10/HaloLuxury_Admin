@@ -61,21 +61,16 @@ const TransactionDetails = ({ open, setOpen, setData, data }) => {
             <Typography variant="h6">Địa chỉ: </Typography>
             <p>
               {data
-                ? data.customer.addresses.length > 0
-                  ? data.customer.addresses
-                  : null
+                ? data.address.addressData +
+                  (data.address.ward ? ", " + data.address.ward : "") +
+                  (data.address.district ? ", " + data.address.district : "") +
+                  (data.address.city ? ", " + data.address.city : "")
                 : null}
             </p>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
             <Typography variant="h6">Số điện thoại: </Typography>
-            <p>
-              {data
-                ? data.customer.addresses.length > 0
-                  ? data.customer.addresses
-                  : null
-                : null}
-            </p>
+            <p>{data ? data.address.phone : null}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
             <Typography variant="h6">Ngày đặt hàng: </Typography>
